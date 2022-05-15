@@ -28,7 +28,7 @@ async function medium() {
         author.innerHTML = coderData.items[i].author
         let varLink = document.createElement("a")
         varLink.href = coderData.items[i].link
-        varLink.innerHTML = "Click here to read"
+        varLink.innerHTML = "Read Article"
         row.appendChild(name)
         row.appendChild(author)
         console.log(varLink)
@@ -40,5 +40,5 @@ async function medium() {
     
     medium();
 
-    var elements = document.querySelectorAll('.editable'),
-    editor = new MediumEditor(elements);
+
+    
