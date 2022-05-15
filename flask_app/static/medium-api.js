@@ -20,7 +20,7 @@ async function medium() {
     coderData = await response.json();
     var recentStories = document.getElementById("recent-stories")
     console.log(coderData.items)
-    for (let i=0;i < coderData.items.length;i++) {
+    for (let i=0;i < coderData.items.length -5;i++) {
         let row = document.createElement("tr")
         let name = document.createElement("td")
         name.innerHTML = coderData.items[i].title
@@ -35,8 +35,10 @@ async function medium() {
         row.appendChild(varLink)
         recentStories.appendChild(row)
     }
-
     console.log()
     return coderData; }
+    
+    medium();
 
-medium();
+    var elements = document.querySelectorAll('.editable'),
+    editor = new MediumEditor(elements);
