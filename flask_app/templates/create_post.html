@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
+<title>Create Sighting</title>
+</head>
+<body>
+    <div class='container' style="display: flex;">
+        <div class="col-9" style="display: flex; flex-direction: column;">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+                <h2>Write a story</h2>
+                
+                <div>
+                    <form style="display:flex; flex-direction: column;" action="/create/post" method="post">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title">
+                        <label for="body">Body</label>
+                        <textarea class=".editable" rows="20" name="body" id="body"></textarea>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </form>
+                </div>
+            </div> 
+        <div class="col-3" style="height:100vh; margin-left: 3vw; border-left: solid black 1px;">
+            <div style="margin-left: 2vw;">
+                <h2>{{user.first_name}} {{user.last_name}}</h2>
+                <a href="/dashboard"><button class="btn btn-success">Dashboard</button> </a>
+                <a href="/"><button class="btn btn-warning">Logout</button></a>
+            </div>
+        </div>
+
+    </div>
+    <!-- <script src="/flask_app/static/medium-editor/dist/js/medium-editor.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='medium-editor.js') }}"></script>
+    <script>var editor = new MediumEditor('.editable');</script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>
+</body>
+</html>
