@@ -19,7 +19,6 @@
                         <tr>
                             <th>Title</th>
                             <th> Writer</th>
-                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -28,7 +27,6 @@
                         <tr>
                             <td style="color: white;"><a  style="color: white;" href="/post/{{post.id}}">{{post.title}}</a></td>
                             <td style="color: white;">{{post.user.first_name}} {{post.user.last_name}}</td>
-                            <td>{{post.date_of_post}}</td>
                             <td>
                                 <a href="/post/{{post.id}}"><button class="btn btn-primary">View</button></a>
                                 {% if post.user_id == session['user_id'] %}

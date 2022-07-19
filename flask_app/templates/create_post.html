@@ -1,51 +1,106 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-<meta charset='UTF-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
-<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
-<title>Write Post</title>
-</head>
-<body style="background: linear-gradient(to right, rgba(37, 117, 252, 1), rgb(158, 68, 255));">
-    <div class='container' style="display: flex;">
-        <div class="col-9" style="display: flex; flex-direction: column;">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div>
-                {% for message in messages %}
-                <p style="color: red;">{{message}}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% endwith %}
-                <h2 style="color: white;">Write a story</h2>
-                
-                <div>
-                    <form style="display:flex; flex-direction: column;" action="/create/post" method="post">
-                        <label style="color: white;" for="title">Title</label>
-                        <input type="text" name="title" id="title">
-                        <label style="color: white;" class="editable" for="body">Body</label>
-                        <textarea class="editable" rows="20" name="body" id="body"></textarea>
-                        <button style="margin-top: 1vh;" type="submit" class="btn btn-dark">Post</button>
-                    </form>
-                </div>
-            </div> 
-
-        <div class="col-3" style="height:100vh; margin-left: 3vw; border-left: solid black 1px;">
-            <div style="margin-left: 2vw;">
-                <h2 style="color: white;">{{user.first_name}} {{user.last_name}}</h2>
-                <a href="/dashboard"><button class="btn btn-success">Dashboard</button> </a>
-                <a href="/"><button class="btn btn-warning">Logout</button></a>
-            </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <title>Write Post</title>
+    <style>
+      .textarea {
+        background-color: rgb(8, 0, 255);
+        color: wheat;
+        padding: 1em;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        outline: none;
+        font-family: "Heebo", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background: linear-gradient(
+        to right,
+        rgba(37, 117, 252, 1),
+        rgb(158, 68, 255)
+      );
+    "
+  >
+    <div class="container" style="display: flex">
+      <div class="col-9" style="display: flex; flex-direction: column">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div>
+          {% for message in messages %}
+          <p style="color: red">{{message}}</p>
+          {% endfor %}
         </div>
+        {% endif %} {% endwith %}
+        <h2 style="color: white">Write a story</h2>
 
+        <div>
+          <form
+            style="display: flex; flex-direction: column"
+            action="/create/post"
+            method="post"
+          >
+            <label style="color: white" for="title">Title</label>
+            <input class="textarea" type="text" name="title" id="title" />
+            <label style="color: white" class="editable" for="body">Body</label>
+            <textarea
+              class="textarea"
+              rows="20"
+              name="body"
+              id="body"
+            ></textarea>
+            <button style="margin-top: 1vh" type="submit" class="btn btn-dark">
+              Post
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="col-3"
+        style="height: 100vh; margin-left: 3vw; border-left: solid black 1px"
+      >
+        <div style="margin-left: 2vw">
+          <h2 style="color: white">{{user.first_name}} {{user.last_name}}</h2>
+          <a href="/dashboard"
+            ><button class="btn btn-success">Dashboard</button>
+          </a>
+          <a href="/"><button class="btn btn-warning">Logout</button></a>
+        </div>
+      </div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='medium-api.js') }}"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='medium-api.js') }}"
+    ></script>
     <script src="js/medium-editor.js"></script>
-    <script>var editor = new MediumEditor('.editable');</script>
+    <script>
+      var editor = new MediumEditor(".editable");
+    </script>
     <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
